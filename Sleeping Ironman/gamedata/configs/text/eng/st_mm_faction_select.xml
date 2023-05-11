@@ -207,7 +207,7 @@
 	<string id="st_mm_list_hardcore_regen_desc">
 		<text>
 			%c[0,150,150,150]An additional feature for Ironman mode that allows you to set how many days it will take to grant an extra life.
-			\n%c[200,200,50,50]• %c[0,150,150,150]Sleeping will partially count.
+			\n%c[200,200,50,50]• %c[0,150,150,150]Sleeping will count.
 			\n%c[200,200,50,50]• %c[0,150,150,150]Ironman mode must be active.
 		</text>
 	</string>

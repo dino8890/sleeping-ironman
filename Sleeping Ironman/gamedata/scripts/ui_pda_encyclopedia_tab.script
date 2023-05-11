@@ -915,7 +915,7 @@ function UpdateDescr(section, str)
 				local minutes = math.floor(seconds/60)
 				local hours = math.floor(minutes/60)
 
-				local true_hrs = hours - ironman.sleep_hrs/2
+				local true_hrs = hours - ironman.sleep_hrs * (1 - sleeping_ironman_mcm.get_config_value("sleep_percent"))
 				local total_lives = math.floor(true_hrs/ironman.life_cycle)
 
 				local hours_left = ironman.life_cycle - (true_hrs - (ironman.life_cycle * total_lives))

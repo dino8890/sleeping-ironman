@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+	<string id="ui_mcm_menu_sleeping_ironman">
+		<text>Sleeping Ironman</text>
+	</string>
+	<string id="ui_mcm_sleeping_ironman_sleep_percent">
+		<text>Sleep factor</text>
+	</string>
+	<string id="ui_mcm_sleeping_ironman_limit_lives">
+		<text>Limit lives</text>
+	</string>
+	<string id="ui_mcm_sleeping_ironman_max_lives">
+		<text>Max lives</text>
+	</string>
+	<string id="ui_mcm_sleeping_ironman_sleep_percent_desc">
+		<text>
+		    Percentage of hours asleep which count as being awake. For example, with a value of 0.5, sleeping for 12 hours will count as being 6 hours awake.
+		</text>
+	</string>
+	<string id="ui_mcm_sleeping_ironman_limit_lives_desc">
+		<text>Limits maximum number of lives.</text>
+	</string>
+	<string id="ui_mcm_sleeping_ironman_max_lives_desc">
+		<text>Additional lives past this value are not granted.</text>
+	</string>
+</string_table>

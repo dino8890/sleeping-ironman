@@ -25,29 +25,43 @@ function timer()
     local minutes = math.floor(seconds/60)
     local hours = math.floor(minutes/60)
 
-    local true_hrs = hours
+    local true_hrs = hours - MDATA.sleep_hrs * (1 - sleeping_ironman_mcm.get_config_value("sleep_percent"))
     local total_lives = math.floor(true_hrs/MDATA.life_cycle)
 
+    local limit_lives = sleeping_ironman_mcm.get_config_value('limit_lives')
+    local max_lives = sleeping_ironman_mcm.get_config_value('max_lives')
+
+    if limit_lives then
+        total_lives = total_lives - MDATA.skipped_lives
+    end
+
+    -- Calculate lives left
+    local deaths = MDATA.death_count + MDATA.granted_lives
+    local lives_left = MDATA.death_limit - MDATA.death_count
+
     if MDATA.granted_lives and MDATA.death_limit and MDATA.death_count and (MDATA.granted_lives < total_lives) then
-        -- Reduce death count
-        MDATA.death_count = MDATA.death_count - 1
+        if not limit_lives or lives_left < max_lives then
+            -- Reduce death count
+            MDATA.death_count = MDATA.death_count - 1
 
-        -- Increase granted lives count
-        MDATA.granted_lives = MDATA.granted_lives + 1
+            -- Increase granted lives count
+            MDATA.granted_lives = MDATA.granted_lives + 1
 
-        -- Calculate lives left
-        local deaths = MDATA.death_count + MDATA.granted_lives
-        local lives_left = MDATA.death_limit - MDATA.death_count
+            lives_left = lives_left + 1
 
-        -- Send news
-        local header = game.translate_string("encyclopedia_features_ironman_mode")
-        local message = strformat(game.translate_string("st_ironman_new_life"), deaths, lives_left)
+            -- Send news
+            local header = game.translate_string("encyclopedia_features_ironman_mode")
+            local message = strformat(game.translate_string("st_ironman_new_life"), deaths, lives_left)
 
-        actor_menu.set_msg(1, message, 10)
-        db.actor:give_game_news(header, message, "ui_inGame2_PD_Otmecheniy_zonoy", 0, 15000, 0)
-        utils_obj.play_sound("interface\\mp_reward")
+            actor_menu.set_msg(1, message, 10)
+            db.actor:give_game_news(header, message, "ui_inGame2_PD_Otmecheniy_zonoy", 0, 15000, 0)
+            utils_obj.play_sound("interface\\mp_reward")
 
-        printdbg("- Sleeping Ironman mode - Second Wind | NEW LIFE GRANTED! | uuid = %s - deaths = %s - lives_left = %s", tostring(MDATA.uuid), tostring(deaths), tostring(lives_left))
+            printdbg("- Sleeping Ironman mode - Second Wind | NEW LIFE GRANTED! | uuid = %s - deaths = %s - lives_left = %s", tostring(MDATA.uuid), tostring(deaths), tostring(lives_left))
+        else
+            MDATA.skipped_lives = MDATA.skipped_lives + 1
+            printdbg("- Sleeping Ironman mode - Second Wind | SKIPPED LIFE! | uuid = %s - deaths = %s - lives_left = %s", tostring(MDATA.uuid), tostring(deaths), tostring(lives_left))
+        end
     end
 
     return false
@@ -165,16 +179,22 @@ local function save_state(m_data)
         return
     end
     m_data.ironman = MDATA
-    printdbg("# SAVING: Sleeping Ironman mode - Second Wind | uuid = %s - life_feature = %s - granted_lives = %s - life_cycle = %s - sleep_hrs = %s",tostring(MDATA.uuid),tostring(MDATA.life_feature),tostring(MDATA.granted_lives),tostring(MDATA.life_cycle),tostring(MDATA.sleep_hrs))
+    printdbg("# SAVING: Sleeping Ironman mode - Second Wind | uuid = %s - life_feature = %s - granted_lives = %s - skipped_lives = %s - life_cycle = %s - sleep_hrs = %s",tostring(MDATA.uuid),tostring(MDATA.life_feature),tostring(MDATA.granted_lives),tostring(MDATA.skipped_lives),tostring(MDATA.life_cycle),tostring(MDATA.sleep_hrs))
 end
 
 local function load_state(m_data)
     local ironman = m_data.ironman
+
     if not (ironman and ironman.uuid and ironman.life_feature and ironman.life_cycle) then
         return
     end
+
     MDATA = ironman
-    printdbg("# LOADING: Sleeping Ironman mode - Second Wind | uuid = %s - life_feature = %s - granted_lives = %s - life_cycle = %s - sleep_hrs = %s",tostring(MDATA.uuid),tostring(MDATA.life_feature),tostring(MDATA.granted_lives),tostring(MDATA.life_cycle),tostring(MDATA.sleep_hrs))
+    if not MDATA.skipped_lives then
+        MDATA.skipped_lives = 0
+    end
+
+    printdbg("# LOADING: Sleeping Ironman mode - Second Wind | uuid = %s - life_feature = %s - granted_lives = %s - skipped_lives = %s - life_cycle = %s - sleep_hrs = %s",tostring(MDATA.uuid),tostring(MDATA.life_feature),tostring(MDATA.granted_lives),tostring(MDATA.skipped_lives),tostring(MDATA.life_cycle),tostring(MDATA.sleep_hrs))
 end
 
 function on_game_start()
