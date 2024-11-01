@@ -151,7 +151,6 @@
 			%c[0,150,150,150]Survival mode is a feature that replaces all spawns with Zombies.\n
 			\nThese hordes will make their way to your location - be prepared! See how long you can survive!
 			\n \n%c[200,200,50,50]• %c[0,150,150,150]Not compatible with Warfare mode.
-			\n \n%c[200,200,50,50]• %c[0,150,150,150]Not compatible with Survival mode.
 		</text>
 	</string>
 	<string id="st_mm_ck_azazel_mode_desc">
