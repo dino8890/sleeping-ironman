@@ -1,0 +1,91 @@
+<figure>
+<img src="https://media.moddb.com/images/members/5/4511/4510828/profile/cover.png" alt="cover" width="1280" height="768" />
+<figcaption aria-hidden="true">cover</figcaption>
+</figure>
+<h2 id="sleeping-ironman---anomaly-1.5.3">Sleeping Ironman - Anomaly
+1.5.3</h2>
+<p>Adjusts Ironman mode to count time spent sleeping toward earning a
+new life. The portion of sleep time that contributes to a new life is
+configurable (see configuration section) and defaults to 50%.</p>
+<h3 id="installation">Installation</h3>
+<h4 id="jsgme">JSGME:</h4>
+<p>Copy the <em>Sleeping Ironman</em> folder to your
+<em>MODS</em> folder and enable it through JSGME.</p>
+<h4 id="manual">Manual:</h4>
+<p>Copy the contents of <em>Sleeping Ironman/gamedata</em> folder to
+your <em>gamedata</em> folder.</p>
+<h3 id="configuration">Configuration</h3>
+<h4 id="using-mod-configuration-menu-mcm">Using Mod Configuration Menu
+(MCM)</h4>
+<p>The mod is compatible with <a
+href="https://www.moddb.com/mods/stalker-anomaly/addons/anomaly-mod-configuration-menu">MCM</a>,
+therefore you can simply install the mod and configure it through the
+MCM as usual by selecting “Sleeping Ironman” menu.</p>
+<h4 id="without-mod-configuration-menu-mcm">Without Mod Configuration
+Menu (MCM)</h4>
+<p>The mod can be configured by adjusting default values in the included
+script file:</p>
+<ol type="1">
+<li>Open
+<em>Sleeping Ironman/gamedata/scripts/sleeping_ironman_mcm.script</em>
+in a code editor.</li>
+<li>Find the <em>defaults</em> table at the top of the file.</li>
+<li>Configure the mod by modifying the desired values (see details
+below).</li>
+<li>Save changes and install the mod.</li>
+</ol>
+<h4 id="details">Details</h4>
+<ul>
+<li><em>sleep_percent</em> - Percentage of hours asleep that count
+as being awake. For example, with a setting of 0.5, sleeping for 12
+hours counts the same as 6 hours of awake time.
+<ul>
+<li><em>Acceptable values</em>: between <em>0.05</em> and
+<em>1.0</em>.</li>
+<li><em>Default</em>: <em>0.5</em>.</li>
+<li>The old <strong>Half Sleep</strong> variant used the value
+<em>0.5</em>.</li>
+<li>The old <strong>Full Sleep</strong> variant used the value
+<em>1.0</em> meaning that 100% of hours slept would count toward
+earning a new life.</li>
+</ul></li>
+<li><em>limit_lives</em> - Limits maximum number of lives.
+Additional lives past <em>max_lives</em> value are not granted.
+<ul>
+<li><em>Acceptable values</em>: <em>true</em> or
+<em>false</em>.</li>
+<li><em>Default</em>: <em>false</em>.</li>
+</ul></li>
+<li><em>max_lives</em> - Additional lives past this value are not
+granted. Works only when life limit is enabled.
+<ul>
+<li><em>Acceptable values</em>: between <em>1</em> and
+<em>1000</em>.</li>
+<li><em>Default</em>: <em>3</em>.</li>
+</ul></li>
+</ul>
+<h3 id="feedback">Feedback</h3>
+<p>I would love to hear your feedback on the “feel” of the game. A sleep
+percentage of <em>0.5</em> combined with a life limit retains the
+original tension and atmosphere while offering a second chance after a
+rare slip-up or unfortunate circumstances.</p>
+<h3 id="related-mods">Related mods:</h3>
+<ul>
+<li><a
+href="https://www.moddb.com/mods/stalker-anomaly/addons/immersive-sleep">Immersive
+Sleep</a> by tkcrits</li>
+</ul>
+<h3 id="old-versions">Old versions</h3>
+<ul>
+<li>Anomaly 1.5.2 - current version is fully compatible.</li>
+<li>Anomaly 1.5.1 - <a
+href="https://github.com/dino8890/sleeping-ironman/releases">Release on
+GitHub</a></li>
+</ul>
+<h3 id="screenshot">Screenshot</h3>
+<figure>
+<img
+src="https://media.moddb.com/images/members/5/4511/4510828/profile/pda.jpg"
+title="PDA" alt="pda" />
+<figcaption aria-hidden="true">pda</figcaption>
+</figure>
